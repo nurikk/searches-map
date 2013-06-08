@@ -28,15 +28,26 @@
 
     _.each(locations, function(place){
 
-      var myLatLng = new google.maps.LatLng(place[3], place[2]);
-      if(!rendered_markers[place[1]]){
-        rendered_markers[place[1]] = new google.maps.Marker({
+      var searches = place[0],
+        name = place[1],
+        lat = place[2],
+        long = place[3];
+
+      if(!lat || !long){
+        return;
+      }
+      var myLatLng = new google.maps.LatLng(lat, long);
+      if(!rendered_markers[name]){
+        rendered_markers[name] = new MarkerWithLabel({
           position: myLatLng,
           map: map,
+          labelContent: name + ' (' + searches + ')',
           icon: image,
           shape: shape,
-          title: place[1],
-          animation: google.maps.Animation.DROP
+          labelClass: "labels", // the CSS class for the label
+          labelStyle: {opacity: 0.75},
+          labelAnchor: new google.maps.Point(-32, 25),
+          title: name
         });
       }
     });
