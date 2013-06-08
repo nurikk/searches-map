@@ -28,7 +28,7 @@
 
     _.each(locations, function(place){
 
-      var myLatLng = new google.maps.LatLng(place[2], place[3]);
+      var myLatLng = new google.maps.LatLng(place[3], place[2]);
       if(!rendered_markers[place[1]]){
         rendered_markers[place[1]] = new google.maps.Marker({
           position: myLatLng,
